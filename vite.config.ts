@@ -21,7 +21,16 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     rollupOptions: {
-      external: ['@splinetool/runtime'],
+      // Instead of just marking as external, provide a CDN fallback
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+        },
+        // Add globals configuration for externals
+        globals: {
+          '@splinetool/runtime': 'splinetool_runtime',
+        },
+      },
     },
   },
 }));
