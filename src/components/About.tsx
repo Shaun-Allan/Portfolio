@@ -31,7 +31,6 @@ const AboutSection = () => {
     // Check if device is mobile on initial render
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 1280);
-      console.log('Window size:', window.innerWidth, window.innerHeight);
       setSize({ width: window.innerWidth, height: window.innerHeight });
     };
 
