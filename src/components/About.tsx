@@ -25,19 +25,24 @@ const AboutCard = ({ title, role, period, description, img }) => {
 
 const AboutSection = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight });
 
   useEffect(() => {
     // Check if device is mobile on initial render
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(window.innerWidth < 1280);
+      console.log('Window size:', window.innerWidth, window.innerHeight);
+      setSize({ width: window.innerWidth, height: window.innerHeight });
     };
-    
+
+
+
     // Run the check initially
     checkMobile();
-    
+
     // Set up event listener for window resize
     window.addEventListener('resize', checkMobile);
-    
+
     // Clean up event listener on component unmount
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
@@ -62,11 +67,18 @@ const AboutSection = () => {
           <div className="glass p-6 rounded-xl flex items-center justify-center">
             <div className="w-full h-full bg-gradient-to-br from-neon-purple/20 via-neon-pink/20 to-neon-orange/20 rounded-lg flex items-center justify-start">
               {!isMobile && (
-                <div className='absolute h-[850px] w-[1200px] scale-50 z-10 -left-[150px] -bottom-[199px]'>
+                <div className='absolute h-[850px] w-[1200px] scale-50 z-10  -bottom-[199px]'
+                  style={{ left: `calc(-150px - ${(1536 - size.width) * 0.6}px)` }}>
                   <Spline scene="https://prod.spline.design/JxoeXWx5ISGWw50d/scene.splinecode" />
                 </div>
               )}
-              <p className="text-2xl font-bold gradient-text py-10 px-14 text-left">
+              <p
+                className={`text-2xl font-bold gradient-text py-10 ${isMobile ? 'text-center px-14' : 'text-left pl-14'
+                  }`}
+                style={{
+                  width: !isMobile ? `calc(90% - ${1536 - size.width}px)` : '100%'
+                }}
+              >
                 "Building one app at a time"
               </p>
             </div>

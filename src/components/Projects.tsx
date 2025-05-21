@@ -33,7 +33,7 @@ const ProjectsSection = () => {
   return (
     <section id="projects" className="section">
       <div className="container-custom">
-        <h2 className="section-heading">Projects</h2>
+        <h2 className="section-heading pb-[2px]">Projects</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (

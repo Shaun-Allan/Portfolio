@@ -209,7 +209,7 @@ const getColorForCategory = (category: string): string => {
 const TechCloud = () => {
   const groupRef = useRef<THREE.Group>(null);
   const sunTexture = useLoader(THREE.TextureLoader, '/tech/sun.jpg');
-  
+
 
   useFrame((state) => {
     if (groupRef.current) {
@@ -327,13 +327,23 @@ const techStackOther = [
 ];
 
 const TechStack = () => {
+  const gradientGlowClasses = [
+    "from-purple-500 via-pink-500 to-red-500",
+    "from-cyan-400 via-blue-500 to-indigo-500",
+    "from-green-400 via-teal-500 to-blue-500",
+    "from-yellow-400 via-orange-500 to-pink-500",
+    "from-pink-400 via-rose-500 to-purple-500",
+    "from-indigo-400 via-purple-500 to-pink-500",
+    "from-teal-400 via-lime-500 to-green-500"
+  ];
+
   return (
     <section id="tech" className="section">
       <div className="container-custom">
         <h2 className="section-heading">Tech Stack</h2>
 
-        <div className="h-[80vh] w-full mt-0 mb-20">
-          <Canvas className='border-2 border-white/10 rounded-xl shadow-lg shadow-black/50'> 
+        <div className="h-[80vh] w-full mt-0 mb-20 relative">
+          <Canvas className='border-2 border-white/10 rounded-xl shadow-lg shadow-black/50'>
             <PerspectiveCamera makeDefault position={[0, 0, 10]} fov={60} />
             <ambientLight intensity={0.5} />
             <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
@@ -347,16 +357,16 @@ const TechStack = () => {
               autoRotateSpeed={0.5}
             />
           </Canvas>
-          <div className="absolute top-[80vh] left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="absolute top-[65vh]  animate-bounce" style={{ left: 'calc(50% - 20px)' }}>
             <a href="#stacks" className="text-white/50 hover:text-white transition-colors">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="40"    
-                height="40"   
+                width="40"
+                height="40"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="2.5" 
+                strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               >
@@ -374,44 +384,102 @@ const TechStack = () => {
           <div className="glass p-6 rounded-xl card-hover">
             <h3 className="text-xl font-semibold mb-4 tech-gradient-text">Languages</h3>
             <div className="flex flex-wrap gap-2">
-              {techStackLanguages.map((tech, idx) => (
-                <span key={idx} className="px-3 py-1 bg-white/5 rounded-full text-sm">
-                  {tech}
-                </span>
-              ))}
+              {techStackLanguages.map((tech, idx) => {
+                const gradient = gradientGlowClasses[idx % gradientGlowClasses.length];
+                return (
+                  <span
+                    key={idx}
+                    className={`
+                      relative px-3 py-1 rounded-full text-sm 
+                      bg-white/5 text-white transition duration-300
+                      hover:before:opacity-60 before:opacity-0
+                      before:absolute before:inset-0 before:rounded-full
+                      before:blur-sm before:transition before:duration-300
+                      before:bg-gradient-to-r ${gradient}
+                      z-10
+                    `}
+                  >
+                    <span className="relative z-20">{tech}</span>
+                  </span>
+                );
+              })}
+
+
             </div>
           </div>
 
           <div className="glass p-6 rounded-xl card-hover">
             <h3 className="text-xl font-semibold mb-4 tech-gradient-text">Frontend</h3>
             <div className="flex flex-wrap gap-2">
-              {techStackFrontend.map((tech, idx) => (
-                <span key={idx} className="px-3 py-1 bg-white/5 rounded-full text-sm">
-                  {tech}
-                </span>
-              ))}
+              {techStackFrontend.map((tech, idx) => {
+                const gradient = gradientGlowClasses[idx % gradientGlowClasses.length];
+                return (
+                  <span
+                    key={idx}
+                    className={`
+                      relative px-3 py-1 rounded-full text-sm 
+                      bg-white/5 text-white transition duration-300
+                      hover:before:opacity-60 before:opacity-0
+                      before:absolute before:inset-0 before:rounded-full
+                      before:blur-sm before:transition before:duration-300
+                      before:bg-gradient-to-r ${gradient}
+                      z-10
+                    `}
+                  >
+                    <span className="relative z-20">{tech}</span>
+                  </span>
+                );
+              })}
             </div>
           </div>
 
           <div className="glass p-6 rounded-xl card-hover">
             <h3 className="text-xl font-semibold mb-4 tech-gradient-text">Backend</h3>
             <div className="flex flex-wrap gap-2">
-              {techStackBackend.map((tech, idx) => (
-                <span key={idx} className="px-3 py-1 bg-white/5 rounded-full text-sm">
-                  {tech}
-                </span>
-              ))}
+              {techStackBackend.map((tech, idx) => {
+                const gradient = gradientGlowClasses[idx % gradientGlowClasses.length];
+                return (
+                  <span
+                    key={idx}
+                    className={`
+                      relative px-3 py-1 rounded-full text-sm 
+                      bg-white/5 text-white transition duration-300
+                      hover:before:opacity-60 before:opacity-0
+                      before:absolute before:inset-0 before:rounded-full
+                      before:blur-sm before:transition before:duration-300
+                      before:bg-gradient-to-r ${gradient}
+                      z-10
+                    `}
+                  >
+                    <span className="relative z-20">{tech}</span>
+                  </span>
+                );
+              })}
             </div>
           </div>
 
           <div className="glass p-6 rounded-xl card-hover">
             <h3 className="text-xl font-semibold mb-4 tech-gradient-text">Other</h3>
             <div className="flex flex-wrap gap-2">
-              {techStackOther.map((tech, idx) => (
-                <span key={idx} className="px-3 py-1 bg-white/5 rounded-full text-sm">
-                  {tech}
-                </span>
-              ))}
+              {techStackOther.map((tech, idx) => {
+                const gradient = gradientGlowClasses[idx % gradientGlowClasses.length];
+                return (
+                  <span
+                    key={idx}
+                    className={`
+                      relative px-3 py-1 rounded-full text-sm 
+                      bg-white/5 text-white transition duration-300
+                      hover:before:opacity-60 before:opacity-0
+                      before:absolute before:inset-0 before:rounded-full
+                      before:blur-sm before:transition before:duration-300
+                      before:bg-gradient-to-r ${gradient}
+                      z-10
+                    `}
+                  >
+                    <span className="relative z-20">{tech}</span>
+                  </span>
+                );
+              })}
             </div>
           </div>
         </div>
