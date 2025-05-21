@@ -68,7 +68,7 @@ const AboutSection = () => {
             <div className="w-full h-full bg-gradient-to-br from-neon-purple/20 via-neon-pink/20 to-neon-orange/20 rounded-lg flex items-center justify-start">
               {!isMobile && (
                 <div className='absolute h-[850px] w-[1200px] scale-50 z-10  -bottom-[199px]'
-                  style={{ left: `calc(-150px - ${(1536 - size.width) * 0.6}px)` }}>
+                  style={{ left: `calc(-150px - ${Math.pow((1920 - size.width), 0.71)}px)` }}>
                   <Spline scene="https://prod.spline.design/JxoeXWx5ISGWw50d/scene.splinecode" />
                 </div>
               )}
