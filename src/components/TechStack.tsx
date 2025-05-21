@@ -159,7 +159,7 @@ const technologies = [
   { name: "C/C++", category: "language", img: "/tech/c-c++.png" },
 
   // Frontend
-  { name: "React", category: "frontend", img: "/tech/react.png" },
+  { name: "React/React Native", category: "frontend", img: "/tech/react.png" },
   { name: "Angular", category: "frontend", img: "/tech/angular.png" },
   { name: "Next.js", category: "frontend", img: "/tech/next.png" },
   { name: "Redux", category: "frontend", img: "/tech/redux.png" },
@@ -307,7 +307,7 @@ const TechCloud = () => {
 
 
 const techStackFrontend = [
-  "React", "Angular", "Next.js", "Redux",
+  "React", "React Native", "Angular", "Next.js", "Redux",
   "HTML", "CSS", "Tailwind CSS", "Three.js"
 ];
 

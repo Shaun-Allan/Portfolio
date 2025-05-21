@@ -54,7 +54,7 @@ const AboutSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           <div>
             <p className="text-lg text-gray-300 mb-6">
-              I build cool stuff on the web 🌐 and mobile 📱 — whether it's a slick website or a handy app.
+              I build cool Full Stack stuff on the web 🌐 and mobile 📱 — whether it's a slick website or a handy app.
               I also manage the DevOps ⚙️, making sure everything runs smoothly behind the scenes.
               From planning and architecture to deployment and monitoring, I enjoy taking ownership of the entire lifecycle.
             </p>
