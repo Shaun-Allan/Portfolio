@@ -1,143 +1,4 @@
 
-// import { useRef, useEffect } from "react";
-// import { Canvas } from "@react-three/fiber";
-// import { Text, OrbitControls, Float } from "@react-three/drei";
-// import * as THREE from "three";
-
-// const TechSphere = ({ techStack }: { techStack: string[] }) => {
-//   const groupRef = useRef<THREE.Group>(null);
-
-//   useEffect(() => {
-//     if (!groupRef.current) return;
-//   }, []);
-
-//   return (
-//     <group ref={groupRef}>
-//       {techStack.map((tech, i) => {
-//         const phi = Math.acos(-1 + (2 * i) / techStack.length);
-//         const theta = Math.sqrt(techStack.length * Math.PI) * phi;
-//         const radius = 5;
-
-//         const x = radius * Math.cos(theta) * Math.sin(phi);
-//         const y = radius * Math.sin(theta) * Math.sin(phi);
-//         const z = radius * Math.cos(phi);
-
-//         return (
-//           <Float key={tech} speed={1} rotationIntensity={1} floatIntensity={1}>
-//             <Text
-//               position={[x, y, z]}
-//               color={getRandomColor()}
-//               fontSize={0.5}
-//               font="/fonts/Inter-Bold.woff"
-//               anchorX="center"
-//               anchorY="middle"
-//             >
-//               {tech}
-//             </Text>
-//           </Float>
-//         );
-//       })}
-//     </group>
-//   );
-// };
-
-// const getRandomColor = () => {
-//   const colors = ["#36DBFF", "#B16CEA", "#FF7EB3", "#FFA26B", "#00FFB2"];
-//   return colors[Math.floor(Math.random() * colors.length)];
-// };
-
-// const TechStackSection = () => {
-//   const techStackFrontend = [
-//     "React", "Angular", "Next.js", "Redux", 
-//     "HTML", "CSS", "Tailwind CSS", "Three.js"
-//   ];
-
-//   const techStackBackend = [
-//     "Express", "Springboot", 
-//     "Node.js", "MongoDB", "MySQL", "PostgreSQL", "Cassandra"
-//   ];
-
-//   const techStackLanguages = [
-//     "Python", "JavaScript", "Java", 
-//     "Dart", "GoLang", "SQL", "CSQL", "C", "C++"
-//   ];
-
-//   const techStackOther = [
-//     "Flutter", "Android Studio", "Kafka", "RabbitMQ", 
-//     "Git", "GitHub", "Docker", "Kubernetes", "TensorFlow", "GCP", "AWS"
-//   ];
-
-//   const allTech = [...techStackFrontend, ...techStackBackend, ...techStackLanguages, ...techStackOther];
-
-//   return (
-//     <section id="tech" className="section bg-gradient-to-b from-background to-black">
-//       <div className="container-custom">
-//         <h2 className="section-heading">Tech Stack</h2>
-
-//         <div className="h-[60vh] w-full relative mb-12">
-//           <Canvas className="tech-canvas">
-//             <ambientLight intensity={0.5} />
-//             <pointLight position={[10, 10, 10]} intensity={1} />
-//             <TechSphere techStack={allTech} />
-//             <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
-//           </Canvas>
-//         </div>
-
-//         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-//           <div className="glass p-6 rounded-xl card-hover">
-//             <h3 className="text-xl font-semibold mb-4 tech-gradient-text">Languages</h3>
-//             <div className="flex flex-wrap gap-2">
-//               {techStackLanguages.map((tech, idx) => (
-//                 <span key={idx} className="px-3 py-1 bg-white/5 rounded-full text-sm">
-//                   {tech}
-//                 </span>
-//               ))}
-//             </div>
-//           </div>
-
-//           <div className="glass p-6 rounded-xl card-hover">
-//             <h3 className="text-xl font-semibold mb-4 tech-gradient-text">Frontend</h3>
-//             <div className="flex flex-wrap gap-2">
-//               {techStackFrontend.map((tech, idx) => (
-//                 <span key={idx} className="px-3 py-1 bg-white/5 rounded-full text-sm">
-//                   {tech}
-//                 </span>
-//               ))}
-//             </div>
-//           </div>
-
-//           <div className="glass p-6 rounded-xl card-hover">
-//             <h3 className="text-xl font-semibold mb-4 tech-gradient-text">Backend</h3>
-//             <div className="flex flex-wrap gap-2">
-//               {techStackBackend.map((tech, idx) => (
-//                 <span key={idx} className="px-3 py-1 bg-white/5 rounded-full text-sm">
-//                   {tech}
-//                 </span>
-//               ))}
-//             </div>
-//           </div>
-
-//           <div className="glass p-6 rounded-xl card-hover">
-//             <h3 className="text-xl font-semibold mb-4 tech-gradient-text">Other</h3>
-//             <div className="flex flex-wrap gap-2">
-//               {techStackOther.map((tech, idx) => (
-//                 <span key={idx} className="px-3 py-1 bg-white/5 rounded-full text-sm">
-//                   {tech}
-//                 </span>
-//               ))}
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default TechStackSection;
-
-
-
-
 import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Text, Float, OrbitControls, PerspectiveCamera } from '@react-three/drei';
@@ -159,13 +20,13 @@ const technologies = [
   { name: "C/C++", category: "language", img: "/tech/c-c++.png" },
 
   // Frontend
-  { name: "React/React Native", category: "frontend", img: "/tech/react.png" },
+  { name: "React.js/React Native", category: "frontend", img: "/tech/react.png" },
   { name: "Angular", category: "frontend", img: "/tech/angular.png" },
   { name: "Next.js", category: "frontend", img: "/tech/next.png" },
   { name: "Redux", category: "frontend", img: "/tech/redux.png" },
   { name: "HTML", category: "frontend", img: "/tech/html.png" },
   { name: "CSS", category: "frontend", img: "/tech/css.png" },
-  { name: "Tailwind", category: "frontend", img: "/tech/tailwind.png" },
+  { name: "Tailwind CSS", category: "frontend", img: "/tech/tailwind.png" },
   { name: "Three.js", category: "frontend", img: "/tech/three.png" },
 
   // Mobile
@@ -173,9 +34,10 @@ const technologies = [
   { name: "Android Studio", category: "mobile", img: "/tech/android.png" },
 
   // Backend
-  { name: "Express", category: "backend", img: "/tech/express.png" },
-  { name: "SpringBoot", category: "backend", img: "/tech/springboot.png" },
+  { name: "Express.js", category: "backend", img: "/tech/express.png" },
+  { name: "Spring Boot", category: "backend", img: "/tech/springboot.png" },
   { name: "Node.js", category: "backend", img: "/tech/node.png" },
+  { name: "Flask", category: "backend", img: "/tech/flask.png" },
 
   // Database
   { name: "MongoDB", category: "database", img: "/tech/mongo.png" },
@@ -307,12 +169,12 @@ const TechCloud = () => {
 
 
 const techStackFrontend = [
-  "React", "React Native", "Angular", "Next.js", "Redux",
+  "React.js", "React Native", "Angular", "Next.js", "Redux",
   "HTML", "CSS", "Tailwind CSS", "Three.js"
 ];
 
 const techStackBackend = [
-  "Express", "Springboot", "Flask",
+  "Express.js", "Spring Boot", "Flask",
   "Node.js", "MongoDB", "MySQL", "PostgreSQL", "Cassandra"
 ];
 
