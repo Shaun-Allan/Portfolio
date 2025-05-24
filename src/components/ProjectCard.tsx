@@ -131,7 +131,12 @@ const ProjectCard = ({ project }) => {
               }}
             >
               <p className="text-foreground/80 mb-2 whitespace-pre-line">
-                {project.description}
+                {showFullDesc 
+                  ? project.description 
+                  : project.description.length > 100 
+                    ? `${project.description.substring(0, 100)}...`
+                    : project.description
+                }
               </p>
             </div>
 

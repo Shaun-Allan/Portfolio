@@ -91,7 +91,7 @@ const AboutSection = () => {
             title="NatWest"
             role="Software Engineer Intern"
             period="2025 - Present"
-            description="Working on innovative banking solutions, contributing to frontend and backend systems with modern tech stacks. Developing scalable applications and implementing user-friendly interfaces."
+            description="Worked on developing and testing backend components using Java and Spring Boot frameworks. Utilized Oracle SQL for efficient database querying and management. Employed Cucumber for behavior-driven development (BDD) to create and automate test scenarios, ensuring high-quality software delivery. Collaborated with cross-functional teams to support agile development processes and deliver scalable solutions."
             img="/about/natwest.png"
           />
 
@@ -99,16 +99,16 @@ const AboutSection = () => {
             title="SSN AI Club & IEEE Power and Energy Society"
             role="Webmaster"
             period="2024 - Present"
-            description="Managing web presence and digital infrastructure for both organizations. Developing and maintaining websites, implementing SEO strategies, and creating engaging digital content."
+            description="Developed the official websites of both societies from scratch, tailored to the unique identity and needs of each organization. Responsible for the full web development lifecycle, from design and front-end implementation to deployment and maintenance. Ensured the sites are responsive, visually engaging, and easy to navigate across all devices. Regularly update content to reflect ongoing events and initiatives, and collaborate with team leads to keep the sites aligned with each society's goals and communications."
             img="/about/IEEE PES.png"
           />
 
           <AboutCard
-            title="SSN Coding Club"
-            role="Full Stack Core Committee Member"
+            title="SSN ACM Student Chapter"
+            role="Technical Core Committee Member"
             period="2024 - Present"
-            description="Leading technical workshops, organizing coding competitions, and mentoring junior developers. Contributing to community projects and fostering a culture of collaborative learning."
-            img="/about/coding club.png"
+            description="Led and organized multiple technical events, including flagship competitions and coding challenges with 200+ participants. Played a key role in developing and curating content, including designing problem statements for hackathons and quizzes. Coordinated with team members to ensure smooth execution, timely communication, and an engaging experience. Supported initiatives fostering a strong technical community and enhancing students' coding and problem-solving skills."
+            img="/about/acm.png"
           />
         </div>
       </div>
