@@ -1,12 +1,7 @@
-
-import React, { useRef } from 'react';
+import React, { useRef, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Text, Float, OrbitControls, PerspectiveCamera } from '@react-three/drei';
+import { Text, Float, OrbitControls, PerspectiveCamera, useTexture, Preload } from '@react-three/drei';
 import * as THREE from 'three';
-import { useLoader } from '@react-three/fiber';
-
-
-
 
 const technologies = [
   // Languages
@@ -68,10 +63,51 @@ const getColorForCategory = (category: string): string => {
   }
 };
 
+// Loading fallback component
+const CloudFallback = () => (
+  <>
+    <mesh>
+      <sphereGeometry args={[2, 32, 32]} />
+      <meshStandardMaterial
+        color="#ffaa00"
+        emissive="#ffaa00"
+        emissiveIntensity={0.1}
+        opacity={0.5}
+        transparent
+      />
+    </mesh>
+    <Text
+      position={[0, -3, 0]}
+      fontSize={0.5}
+      color="#ffffff"
+      anchorX="center"
+      anchorY="middle"
+    >
+      Loading Tech Stack...
+    </Text>
+    <Text
+      position={[0, -3.8, 0]}
+      fontSize={0.3}
+      color="#ffaa00"
+      anchorX="center"
+      anchorY="middle"
+    >
+      Please wait while we load the 3D experience
+    </Text>
+  </>
+
+);
+
 const TechCloud = () => {
   const groupRef = useRef<THREE.Group>(null);
-  const sunTexture = useLoader(THREE.TextureLoader, '/tech/sun.jpg');
 
+  // Preload all textures at once
+  const allImages = technologies.map(tech => tech.img).concat(['/tech/sun.jpg']);
+  const textures = useTexture(allImages);
+
+  // Extract sun texture (last one) and tech textures
+  const sunTexture = textures[textures.length - 1];
+  const techTextures = textures.slice(0, -1);
 
   useFrame((state) => {
     if (groupRef.current) {
@@ -104,7 +140,8 @@ const TechCloud = () => {
       <group ref={groupRef}>
         {technologies.map((tech, i) => {
           const size = Math.max(Math.random() * 0.9, 0.3);
-          const texture = useLoader(THREE.TextureLoader, tech.img);
+          const texture = techTextures[i];
+
           return (
             <Float
               key={tech.name}
@@ -113,7 +150,6 @@ const TechCloud = () => {
               floatIntensity={2}
               position={positions[i] as [number, number, number]}
             >
-
               <mesh>
                 <sphereGeometry args={[size, 32, 32]} />
                 <meshStandardMaterial
@@ -157,16 +193,10 @@ const TechCloud = () => {
           color="#ffaa00"
           castShadow
         />
-
-
       </group>
-
     </>
-
   );
 };
-
-
 
 const techStackFrontend = [
   "React.js", "React Native", "Angular", "Next.js", "Redux",
@@ -211,7 +241,10 @@ const TechStack = () => {
             <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
             <pointLight position={[-10, -10, -10]} />
 
-            <TechCloud />
+            <Suspense fallback={<CloudFallback />}>
+              <TechCloud />
+              <Preload all />
+            </Suspense>
 
             <OrbitControls
               enableZoom={false}
@@ -219,7 +252,7 @@ const TechStack = () => {
               autoRotateSpeed={0.5}
             />
           </Canvas>
-          <div className="absolute top-[65vh]  animate-bounce" style={{ left: 'calc(50% - 20px)' }}>
+          <div className="absolute top-[65vh] animate-bounce" style={{ left: 'calc(50% - 20px)' }}>
             <a href="#stacks" className="text-white/50 hover:text-white transition-colors">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -237,10 +270,7 @@ const TechStack = () => {
               </svg>
             </a>
           </div>
-
         </div>
-
-
 
         <div id="stacks" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="glass p-6 rounded-xl card-hover">
@@ -265,8 +295,6 @@ const TechStack = () => {
                   </span>
                 );
               })}
-
-
             </div>
           </div>
 
@@ -346,7 +374,6 @@ const TechStack = () => {
           </div>
         </div>
       </div>
-
     </section>
   );
 };
