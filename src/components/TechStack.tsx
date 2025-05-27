@@ -83,16 +83,7 @@ const CloudFallback = () => (
       anchorX="center"
       anchorY="middle"
     >
-      Loading Tech Stack...
-    </Text>
-    <Text
-      position={[0, -3.8, 0]}
-      fontSize={0.3}
-      color="#ffaa00"
-      anchorX="center"
-      anchorY="middle"
-    >
-      Please wait while we load the 3D experience
+      Loading 3D Experience...
     </Text>
   </>
 
