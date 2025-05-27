@@ -97,9 +97,10 @@ const ProjectCard = ({ project }) => {
           {project.isVideo ? (
             <video
               src={project.media}
-              className="w-full h-full object-cover object-left-top transition-transform duration-500 ease-in-out"
+              className="w-full h-full object-cover transition-transform duration-500 ease-in-out"
               style={{
                 transform: isHovered ? 'scale(1.1)' : 'scale(1)',
+                objectPosition: project.objectPosition || 'center'
               }}
               autoPlay
               loop

@@ -1,18 +1,22 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import ProjectCard from './ProjectCard';
 
 const ProjectsSection = () => {
 
-   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
+  const [projects, setProjects] = useState([]);
 
-   useEffect(() => {
+  useEffect(() => {
     function handleResize() {
       setWindowWidth(window.innerWidth);
     }
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  
+
+
+
+
 
   const baseProjects = [
     {
@@ -24,6 +28,29 @@ const ProjectsSection = () => {
       link: "https://github.com/Shaun-Allan/aSapRoute",
       baseRowSpan: 2,
       baseColSpan: 1,
+      objectPosition: "center top",
+    },
+    {
+      title: "Invente '24 & Instincts '25",
+      description: "Developed and maintained the official websites for the institution’s flagship cultural festivals, which served as the central platform for event schedules, registrations, and live updates for over 3,000 participants and attendees.",
+      tags: ["Next.js", "TailwindCSS", "Framer Motion"],
+      media: "/projects/Instincts 25.mp4",
+      isVideo: true,
+      link: "https://instincts-2025.vercel.app/",
+      baseRowSpan: 1,
+      baseColSpan: 2,
+      objectPosition: "center center",
+    },
+    {
+      title: "Wassup",
+      description: "A microservices-based messaging platform supporting one-to-one and group conversations using WebSockets. Built with React Native for the frontend and GoLang for backend services, it features JWT-based authentication, containerized architecture with Docker, and scalable orchestration using Kubernetes. Data is managed using PostgreSQL and MongoDB to optimize real-time performance and persistence.",
+      tags: ["WebSockets", "React Native", "GoLang", "PostgreSQL", "MongoDB", "Docker", "Kubernetes"],
+      media: "/projects/Wassup.mp4",
+      isVideo: true,
+      link: "https://linktr.ee/shaunallan0605",
+      baseRowSpan: 2,
+      baseColSpan: 1,
+      objectPosition: "center top",
     },
 
     {
@@ -35,61 +62,81 @@ const ProjectsSection = () => {
       link: "https://github.com/Shaun-Allan/ISLTranslator",
       baseRowSpan: 1,
       baseColSpan: 1,
+      objectPosition: "center top",
     },
-    {
-      title: "Wassup",
-      description: "A microservices-based messaging platform supporting one-to-one and group conversations using WebSockets. Built with React Native for the frontend and GoLang for backend services, it features JWT-based authentication, containerized architecture with Docker, and scalable orchestration using Kubernetes. Data is managed using PostgreSQL and MongoDB to optimize real-time performance and persistence.",
-      tags: ["WebSockets", "React Native", "GoLang", "PostgreSQL", "MongoDB", "Docker", "Kubernetes"],
-      media: "/projects/Wassup.mp4",
-      isVideo: true,
-      link: "https://linktr.ee/shaunallan0605",
-      baseRowSpan: 2,
-      baseColSpan: 1,
-    },
+
     {
       title: "Fusion & Fusion Virtual Machine",
-      description: "Fusion involves the design and implementation of a compiled object-oriented programming language inspired by the syntax of Python and Go. The language is executed on a custom-built virtual machine that supports stack-based operations and manages memory efficiently.  The compiler achieves high performance with a compilation speed exceeding 1,200 lines of code per second, enabled by optimized parsing and code generation techniques.",
+      description: "Fusion involves the design and implementation of an original compiled programming language, inspired by the syntax of Python and Go. Built a custom virtual machine for execution, enabling sandboxed and platform-independent code execution. The compiler achieves high performance with a compilation speed exceeding 1,200 lines of code per second, enabled by optimized parsing and code generation techniques.",
       tags: ["C++"],
       media: "/projects/Fusion.mp4",
       isVideo: true,
       link: "https://github.com/Shaun-Allan/Fusion",
       baseRowSpan: 1,
       baseColSpan: 1,
+      objectPosition: "left top",
     },
-    {
-      title: "Invente '24 & Instincts '25",
-      description: "Developed and maintained the official websites for the institution's flagship cultural festivals.",
-      tags: ["Next.js", "TailwindCSS", "Framer Motion"],
-      media: "/projects/Instincts 25.mp4",
-      isVideo: true,
-      link: "https://www.ssnsnucinstincts.com/",
-      baseRowSpan: 1,
-      baseColSpan: 2,
-    },
-    
+
   ];
 
-  const projects = baseProjects.map((p) => {
-    let rowSpan = p.baseRowSpan;
-    let colSpan = p.baseColSpan;
+ 
 
-    if (windowWidth < 768) {
-      // small screen (mobile) — force spans to 1
-      rowSpan = 1;
-      colSpan = 1;
-    } else if (windowWidth >= 768 && windowWidth < 1024) {
-      // medium screen — maybe modify
-      // example: keep original rowSpan, but max colSpan = 1
-      colSpan = Math.min(colSpan, 2);
+  useEffect(() => {
+    function handleResize() {
+      setWindowWidth(window.innerWidth);
     }
-    // large screens: keep original spans
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-    return {
-      ...p,
-      rowSpan,
-      colSpan,
-    };
-  });
+  useEffect(() => {
+    // Clone baseProjects to avoid mutation
+    let orderedProjects = [...baseProjects];
+
+    // Reorder based on windowWidth
+    if (windowWidth < 768) {
+      // Example: prioritize AI DIDI and aSapRoute on mobile
+      orderedProjects = [
+        baseProjects[0], // aSapRoute
+        baseProjects[2], // Wassup
+        baseProjects[4], // Fusion
+        baseProjects[3], // AI DIDI
+        baseProjects[1], // Invente
+      ];
+    } else if (windowWidth >= 768 && windowWidth < 1024) {
+      // Example: put Fusion earlier on tablets
+      orderedProjects = [
+        baseProjects[4], // Fusion
+        baseProjects[0], // aSapRoute
+        baseProjects[2], // Wassup
+        baseProjects[3], // AI DIDI
+        baseProjects[1], // Invente
+      ];
+    }
+    // else keep original order for large screens
+
+    // Then adjust span dynamically
+    const processedProjects = orderedProjects.map((p) => {
+      let rowSpan = p.baseRowSpan;
+      let colSpan = p.baseColSpan;
+
+      if (windowWidth < 768) {
+        rowSpan = 1;
+        colSpan = 1;
+      } else if (windowWidth >= 768 && windowWidth < 1024) {
+        colSpan = Math.min(colSpan, 2);
+      }
+
+      return {
+        ...p,
+        rowSpan,
+        colSpan,
+      };
+    });
+
+    setProjects(processedProjects);
+  }, [windowWidth]);
+
 
   return (
     <section id="projects" className="section">

@@ -26,6 +26,19 @@ const AboutCard = ({ title, role, period, description, img }) => {
 const AboutSection = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight });
+  const getZoom = () => window.devicePixelRatio || 1;
+
+  const [zoom, setZoom] = useState(getZoom());
+
+  useEffect(() => {
+    const handleResize = () => {
+      setZoom(getZoom());
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     // Check if device is mobile on initial render
@@ -56,14 +69,22 @@ const AboutSection = () => {
             <p className="text-lg text-gray-300 mb-6">
               I build cool Full Stack stuff on the web 🌐 and mobile 📱 — whether it's a slick website or a handy app.
               I also manage the DevOps ⚙️, making sure everything runs smoothly behind the scenes.
-              From planning and architecture to deployment and monitoring, I enjoy taking ownership of the entire lifecycle.
+              From planning and architecture to deployment and monitoring, I enjoy taking ownership of the entire lifecycle ♻️.
             </p>
             <p className="text-lg text-gray-300">
               I'm always up for learning new tech 🚀 and trying out different ways to make development easier and more fun 🎉.
             </p>
           </div>
 
+          {/* {isMobile && (
+            <div className='relative h-[489px] w-[598px]'
+              style={{ zIndex: 10, scale: "45%", marginBottom: "-193px", marginTop: "-180px", right: "0%", transform: "translateX(45%)" }}>
+              <Spline scene="https://prod.spline.design/iNXxRLd121sXTPp7/scene.splinecode" />
+            </div>
+          )} */}
+
           <div className="glass p-6 rounded-xl flex items-center justify-center">
+
             <div className="w-full h-full bg-gradient-to-br from-neon-purple/20 via-neon-pink/20 to-neon-orange/20 rounded-lg flex items-center justify-start">
               {!isMobile && (
                 <div className='absolute h-[850px] w-[1200px] scale-50 z-10  -bottom-[199px]'
@@ -86,11 +107,11 @@ const AboutSection = () => {
 
         <h3 className="text-2xl font-semibold mb-6 tech-gradient-text">Experience & Activities</h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AboutCard
             title="NatWest"
             role="Software Engineer Intern"
-            period="2025 - Present"
+            period="June 2025 - Present"
             description="Worked on developing and testing backend components using Java and Spring Boot frameworks. Utilized Oracle SQL for efficient database querying and management. Employed Cucumber for behavior-driven development (BDD) to create and automate test scenarios, ensuring high-quality software delivery. Collaborated with cross-functional teams to support agile development processes and deliver scalable solutions."
             img="/about/natwest.png"
           />

@@ -9,9 +9,6 @@ const Footer = () => {
             <p className="text-sm text-gray-400 mt-1">Web & Mobile Developer | AI Specialist</p>
           </div>
           
-          <div className="text-sm text-gray-400">
-            © {new Date().getFullYear()} Shaun Allan. All rights reserved.
-          </div>
         </div>
       </div>
     </footer>
