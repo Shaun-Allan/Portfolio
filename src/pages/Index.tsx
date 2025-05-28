@@ -7,11 +7,13 @@ import TechStackSection from '../components/TechStack';
 import ProjectsSection from '../components/Projects';
 import ContactSection from '../components/Contact';
 import Footer from '../components/Footer';
+import ScrollProgressBar from "../components/ScrollProgressBar"
+
 
 const Index = () => {
   // Register console error handler to catch any Three.js errors
   useEffect(() => {
-    const handleError = (event: ErrorEvent) => {
+    const handleError = (event) => {
       console.error("Application error:", event.message);
     };
 
@@ -24,6 +26,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <ScrollProgressBar />
       <Navbar />
       <HeroSection />
       <AboutSection />

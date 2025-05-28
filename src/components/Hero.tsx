@@ -184,7 +184,7 @@ const HeroSection = () => {
           <p className="text-xl md:text-2xl mb-8 text-gray-300">
             Full Stack{" "}
             <span className="tech-gradient-text">Web</span> &{" "}
-            <span className="tech-gradient-text">Mobile</span> Developer |{" "}
+            <span className="tech-gradient-text">Mobile</span> Developer • {" "}
             <span className="tech-gradient-text">AI</span> Specialist
           </p>
           <p className="text-lg mb-10 text-gray-400 max-w-2xl">

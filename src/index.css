@@ -84,6 +84,40 @@
     @apply transition-all duration-300 hover:shadow-lg hover:shadow-neon-purple/10 hover:-translate-y-1;
   }
 
+}
+
+@layer utilities {
+  @keyframes pulseGlow {
+
+    0%,
+    100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+
+    50% {
+      opacity: 0.6;
+      transform: scale(1.02);
+    }
+  }
+
+  @keyframes wave {
+    0% {
+      transform: translateX(0%);
+    }
+
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .animate-pulseGlow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  .animate-wave {
+    animation: wave 3s linear infinite;
+  }
 
 }
 

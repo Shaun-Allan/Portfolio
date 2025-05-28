@@ -25,6 +25,7 @@ const AboutCard = ({ title, role, period, description, img }) => {
 
 const AboutSection = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
   const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight });
   const getZoom = () => window.devicePixelRatio || 1;
 
@@ -44,6 +45,7 @@ const AboutSection = () => {
     // Check if device is mobile on initial render
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 1280);
+      setIsTablet(window.innerWidth < 1536);
       setSize({ width: window.innerWidth, height: window.innerHeight });
     };
 
@@ -88,8 +90,8 @@ const AboutSection = () => {
             <div className="w-full h-full bg-gradient-to-br from-neon-purple/20 via-neon-pink/20 to-neon-orange/20 rounded-lg flex items-center justify-start">
               {!isMobile && (
                 <div className='absolute h-[850px] w-[1200px] scale-50 z-10  -bottom-[199px]'
-                  style={{ left: `calc(-150px - ${Math.pow((1920 - size.width), 0.71)}px)` }}>
-                  <Spline scene="https://prod.spline.design/JxoeXWx5ISGWw50d/scene.splinecode" />
+                  style={{ left: `calc(${!isTablet? -150 : -200}px - ${Math.pow((1920 - size.width), 0.71)}px)` }}>
+                  <Spline scene="https://prod.spline.design/HvYtuOEtOFskFW9l/scene.splinecode" />
                 </div>
               )}
               <p
@@ -109,10 +111,10 @@ const AboutSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AboutCard
-            title="NatWest"
+            title="NatWest Group"
             role="Software Engineer Intern"
             period="June 2025 - Present"
-            description="Worked on developing and testing backend components using Java and Spring Boot frameworks. Utilized Oracle SQL for efficient database querying and management. Employed Cucumber for behavior-driven development (BDD) to create and automate test scenarios, ensuring high-quality software delivery. Collaborated with cross-functional teams to support agile development processes and deliver scalable solutions."
+            description="Currently working here"
             img="/about/natwest.png"
           />
 
@@ -127,7 +129,7 @@ const AboutSection = () => {
           <AboutCard
             title="SSN ACM Student Chapter"
             role="Technical Core Committee Member"
-            period="2024 - Present"
+            period="May 2024 - Present"
             description="Led and organized multiple technical events, including flagship competitions and coding challenges with 200+ participants. Played a key role in developing and curating content, including designing problem statements for hackathons and quizzes. Coordinated with team members to ensure smooth execution, timely communication, and an engaging experience. Supported initiatives fostering a strong technical community and enhancing students' coding and problem-solving skills."
             img="/about/acm.png"
           />
