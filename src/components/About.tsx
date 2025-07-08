@@ -114,7 +114,7 @@ const AboutSection = () => {
             title="NatWest Group"
             role="Software Engineer Intern"
             period="June 2025 - Present"
-            description="Currently working here"
+            description="Architected & engineered an AI-driven multi-agent assistant using LangGraph to automate internal platform support services. Eliminated over 60% of manual developer support tasks by automating workflows involving GitLab CI/CD, Jira project configurations, Confluence provisioning, and internal access management. Cut average ticket resolution time from 2+ hours to under 1 minute by introducing intelligent, prompt-based request handling, significantly enhancing engineering velocity. Delivered a fully responsive React-based interface enabling seamless prompt submissions, replacing traditional ticketing processes."
             img="/about/natwest.png"
           />
 
