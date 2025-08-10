@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Spline from '@splinetool/react-spline';
 
 const AboutCard = ({ title, role, period, description, img }) => {
   return (
-    <div className="glass p-6 rounded-xl card-hover">
+    <div className="glass p-6 rounded-xl card-hover h-full">
       <div className='flex items-center justify-between'>
         <div>
           <h3 className="text-xl font-semibold mb-2">{title}</h3>
@@ -23,42 +23,70 @@ const AboutCard = ({ title, role, period, description, img }) => {
   );
 };
 
+const TestimonialBanner = () => {
+  return (
+    <>
+      {/* This style tag defines the custom animation. */}
+      <style>
+        {`
+          @keyframes gradient-move {
+            0% {
+              background-position: 0% 50%;
+            }
+            50% {
+              background-position: 100% 50%;
+            }
+            100% {
+              background-position: 0% 50%;
+            }
+          }
+        `}
+      </style>
+
+      <div className="my-16 relative group">
+        {/* This is the animated gradient border/glow */}
+        <div
+          className="absolute -inset-2 rounded-lg blur-xl opacity-50 group-hover:blur-3xl group-hover:opacity-70 transition-all duration-500"
+          style={{
+            background: 'linear-gradient(270deg, #6366f1, #8b5cf6, #ec4899, #6366f1)',
+            backgroundSize: '400% 400%',
+            animation: 'gradient-move 8s ease infinite',
+            zIndex: 0,
+          }}
+        ></div>
+
+        {/* This is the main content box on top */}
+        {/* FIX: Added border and backdrop-blur for a better glass effect */}
+        <div className="relative glass p-8 rounded-xl z-10 border border-white/10 backdrop-blur-md">
+          {/* FIX: Reverted text to be italic and centered */}
+          <blockquote className="text-center italic text-gray-300 text-lg md:text-xl mb-6 leading-relaxed">
+            "Shaun was an excellent addition to our team during his internship with us. He was diligent, a self-starter, willing to learn, implement new things, and accountable for his commitments. He exhibited very good technical skills, a can-do attitude, and delivered great results."
+          </blockquote>
+          <footer className="text-right">
+            <p className="font-semibold text-white">Ravishankar Rajendran</p>
+            <p className="text-sm text-gray-400">Engineering Platforms Lead, NatWest Group</p>
+          </footer>
+        </div>
+      </div>
+    </>
+  );
+};
+
 const AboutSection = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight });
-  const getZoom = () => window.devicePixelRatio || 1;
-
-  const [zoom, setZoom] = useState(getZoom());
 
   useEffect(() => {
-    const handleResize = () => {
-      setZoom(getZoom());
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useEffect(() => {
-    // Check if device is mobile on initial render
-    const checkMobile = () => {
+    const checkDeviceSize = () => {
       setIsMobile(window.innerWidth < 1280);
       setIsTablet(window.innerWidth < 1536);
       setSize({ width: window.innerWidth, height: window.innerHeight });
     };
 
-
-
-    // Run the check initially
-    checkMobile();
-
-    // Set up event listener for window resize
-    window.addEventListener('resize', checkMobile);
-
-    // Clean up event listener on component unmount
-    return () => window.removeEventListener('resize', checkMobile);
+    checkDeviceSize();
+    window.addEventListener('resize', checkDeviceSize);
+    return () => window.removeEventListener('resize', checkDeviceSize);
   }, []);
 
   return (
@@ -78,25 +106,16 @@ const AboutSection = () => {
             </p>
           </div>
 
-          {/* {isMobile && (
-            <div className='relative h-[489px] w-[598px]'
-              style={{ zIndex: 10, scale: "45%", marginBottom: "-193px", marginTop: "-180px", right: "0%", transform: "translateX(45%)" }}>
-              <Spline scene="https://prod.spline.design/iNXxRLd121sXTPp7/scene.splinecode" />
-            </div>
-          )} */}
-
           <div className="glass p-6 rounded-xl flex items-center justify-center">
-
             <div className="w-full h-full bg-gradient-to-br from-neon-purple/20 via-neon-pink/20 to-neon-orange/20 rounded-lg flex items-center justify-start">
               {!isMobile && (
-                <div className='absolute h-[850px] w-[1200px] scale-50 z-10  -bottom-[199px]'
-                  style={{ left: `calc(${!isTablet? -150 : -200}px - ${Math.pow((1920 - size.width), 0.71)}px)` }}>
+                <div className='absolute h-[850px] w-[1200px] scale-50 z-10 -bottom-[199px]'
+                  style={{ left: `calc(${!isTablet ? -150 : -200}px - ${Math.pow((1920 - size.width), 0.71)}px)` }}>
                   <Spline scene="https://prod.spline.design/HvYtuOEtOFskFW9l/scene.splinecode" />
                 </div>
               )}
               <p
-                className={`text-2xl font-bold gradient-text py-10 ${isMobile ? 'text-center px-14' : 'text-left pl-14'
-                  }`}
+                className={`text-2xl font-bold gradient-text py-10 ${isMobile ? 'text-center px-14' : 'text-left pl-14'}`}
                 style={{
                   width: !isMobile ? `calc(90% - ${1536 - size.width}px)` : '100%'
                 }}
@@ -106,6 +125,8 @@ const AboutSection = () => {
             </div>
           </div>
         </div>
+
+        <TestimonialBanner />
 
         <h3 className="text-2xl font-semibold mb-6 tech-gradient-text">Experience & Activities</h3>
 
